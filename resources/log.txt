@@ -1,0 +1,5 @@
+1 {:time 5001.037497, :result false}
+2 {:time 5002.941705, :result false}
+3 {:time 5004.925255, :result false}
+4 {:time 5001.424943, :result false}
+5 {:time 5000.900355, :result false}
