@@ -26,5 +26,5 @@
            (do
              (spit log (str  attempt " "  (try-catch-timed-ping) "\n") :append true )
              (println (str "I ping to ya.ru, this is my: " attempt " attempt." ))
-             (Tread/sleep 5000) 
+             (Thread/sleep 5000) 
              (recur (inc attempt)))))
