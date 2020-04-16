@@ -14,9 +14,8 @@
 (defn try-catch-timed-ping
   "Try/catch and get string of result for timed ping"
   []
-  (do (try (str (timed-ping "ya.ru" 5000))
-           (catch Exception e (str "caught exception: " (.getMessage e))))
-      (Tread/sleep 5000) ))
+   (try (str (timed-ping "ya.ru" 5000))
+           (catch Exception e (str "caught exception: " (.getMessage e)))))
 
 (def log "PUT LOG.TXT FILEPATH HERE")
 
@@ -27,4 +26,5 @@
            (do
              (spit log (str  attempt " "  (try-catch-timed-ping) "\n") :append true )
              (println (str "I ping to ya.ru, this is my: " attempt " attempt." ))
+             (Tread/sleep 5000) 
              (recur (inc attempt)))))
