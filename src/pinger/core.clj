@@ -14,10 +14,11 @@
 (defn try-catch-timed-ping
   "Try/catch and get string of result for timed ping"
   []
-  (try (str (timed-ping "ya.ru" 5000))
-       (catch Exception e (str "caught exception: " (.getMessage e)))))
+  (do (try (str (timed-ping "ya.ru" 5000))
+           (catch Exception e (str "caught exception: " (.getMessage e))))
+      (Tread/sleep 5000) ))
 
-(def log "/Users/artemalekseev/Downloads/lein projects/pinger/resources/log.txt")
+(def log "PUT LOG.TXT FILEPATH HERE")
 
 (defn -main
   "I don't do a whole lot ... yet."
