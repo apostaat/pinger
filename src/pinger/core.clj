@@ -17,14 +17,28 @@
    (try (str (timed-ping "ya.ru" 5000))
            (catch Exception e (str "caught exception: " (.getMessage e)))))
 
-(def log "PUT LOG.TXT FILEPATH HERE")
+(def log "/Users/artemalekseev/Downloads/lein projects/pinger/resources/log.txt")
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
       (loop [attempt 1 ]
            (do
-             (spit log (str  attempt " "  (try-catch-timed-ping) "\n") :append true )
-             (println (str "I ping to ya.ru, this is my: " attempt " attempt." ))
-             (Thread/sleep 5000) 
+             (spit log (str  attempt " "  (try-catch-timed-ping) " " (java.util.Date.) "\n") :append true )
+             (println (str "I ping to ya.ru, this is my: " attempt " attempt. " (try-catch-timed-ping) " " (java.util.Date.) ))
+             (Thread/sleep 5000)
              (recur (inc attempt)))))
+
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (loop [attempt 1 ]
+    (let [x (try-catch-timed-ping)
+          y (java.util.Date.)]
+      (do
+        (spit log (str  attempt " "  x " " y "\n") :append true )
+        (println (str "I ping to ya.ru, this is my: " attempt " attempt. " x " " y ))
+        (Thread/sleep 5000)
+        (recur (inc attempt)))
+      )))
